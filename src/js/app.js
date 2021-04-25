@@ -1,46 +1,7 @@
-// Constructor function
-function Todo(content) {
-  this.content = content;
-  this.completed = false;
-}
+import { createTodoCard } from './helpers';
+import { Todo } from './models';
 
-const TODOS = [
-  {
-    content: 'lorem ipsum text',
-    completed: false,
-  },
-  {
-    content: 'lorem ipsum text',
-    completed: true,
-  },
-  {
-    content: 'lorem ipsum text',
-    completed: false,
-  },
-  {
-    content: 'lorem ipsum text',
-    completed: true,
-  },
-  {
-    content: 'lorem ipsum text',
-    completed: false,
-  },
-];
-
-function createTodoCard(todo) {
-  // Destructuring
-  const { content, completed } = todo;
-
-  // Back ticks (template string)
-  const cardText = `<span>${content}</span>`;
-
-  // ternary operator
-  const cardCheck = completed
-    ? '<i class="fas fa-check"></i>'
-    : '<i class="far fa-circle"></i>';
-
-  return `${cardText}${cardCheck}`;
-}
+let TODOS = [];
 
 // A function to refresh/update the todos on the screen
 function showTodos() {
@@ -49,18 +10,29 @@ function showTodos() {
   todos.innerHTML = '';
 
   // arrow function
-  TODOS.forEach(todo => {
+  TODOS.forEach((todo, idx) => {
     const todoCardContent = createTodoCard(todo);
     const todoCard = document.createElement('div');
     todoCard.className = 'todoCard';
     todoCard.innerHTML = todoCardContent;
 
+    todoCard.addEventListener('click', () => {
+      TODOS[idx].completed = !TODOS[idx].completed;
+      showTodos();
+    });
+
     todos.appendChild(todoCard);
   });
+
+  localStorage.setItem('todos', JSON.stringify(TODOS));
 }
 
 // event listener
 window.addEventListener('DOMContentLoaded', () => {
+  const data = localStorage.getItem('todos');
+  if (data) {
+    TODOS = JSON.parse(data);
+  }
   showTodos();
 });
 

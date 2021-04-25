@@ -1,0 +1,23 @@
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "description": "a todo app build using plain js",
+  "main": "build/index.html",
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Muhammad-Hasham-Khalid/Todo-App-Javascript.git"
+  },
+  "author": "Hasham",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Muhammad-Hasham-Khalid/Todo-App-Javascript/issues"
+  },
+  "homepage": "https://github.com/Muhammad-Hasham-Khalid/Todo-App-Javascript#readme",
+  "devDependencies": {
+    "parcel": "^2.0.0-beta.2"
+  }
+}
